@@ -1,3 +1,18 @@
+/* ###############################################################
+* Haina Confidential
+*
+* OCO Source Materials
+*
+* Haina Products: Spindle monitor platform
+*
+* (C) Copyright Haina Corp. 2015
+*
+* The source code for this program is not published or otherwise
+* divested of its trade secrets, irrespective of what has been
+* deposited with the China Copyright Office.
+* ###############################################################
+*/
+
 package com.hdp.smp.front;
 
 import java.sql.Connection;
