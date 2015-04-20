@@ -1,0 +1,74 @@
+<project name="SMP-Front" default="package" basedir=".">
+ 
+<!-- set global properties for this build -->
+ <property name="src" value="src"/>
+ <property name="lib" value="lib"/>
+ <property name="target" value="target"/>
+ <property name="build" value="target/classes"/>    
+ <property name="dist" value="target/dist"/>
+ <property name="jarFile"  value="SMP-Front.jar" />
+    
+ <target name="init">
+ <!-- Create the time stamp -->
+ <tstamp/>
+ <!-- Create the build directory structure used by compile -->
+ <mkdir dir="${build}"/>
+ </target>
+  
+     
+ <path id="compile.class.path"> 
+  
+     <fileset dir="${lib}">
+     <include name="**/*.jar"/>
+     </fileset>
+ 	
+ 	 <fileset dir="${basedir}/config/sql/derby/lib">
+ 	     <include name="**/*.jar"/>
+ 	  </fileset>
+ </path>
+ 
+<target name="compile" depends="init">
+ <!-- Compile the java code from ${src} into ${build} -->
+     <javac srcdir="${src}" destdir="${build}" >
+         <classpath refid="compile.class.path"/>
+     </javac>
+ </target>
+     
+     
+ <target name="package" depends="compile">
+     <pathconvert  property ="libs.project"  pathsep =" " >  
+                <mapper> 
+                <chainedmapper> 
+               <!--  remove absolute path  --> 
+                  <flattenmapper/> 
+                   <!--  add lib/ prefix  --> 
+                   <globmapper  from ="*"  to ="${lib}/*"   /> 
+                </chainedmapper > 
+              </mapper > 
+              <path > 
+                <!--  lib/buildhome contains all jar files, in several subdirectories  -->
+                 <fileset  dir ="${lib}" > 
+                  <include  name ="**/*.jar"   /> 
+                </fileset > 
+              </path > 
+   </pathconvert > 
+<!-- Create the jar -->
+ 
+<!-- Put everything in ${build} into the jar file -->
+  <jar jarfile="${jarFile}" basedir="${build}">
+        <manifest > 
+           <!--attribute  name ="Main-Class"  value ="WordCount"  /> 
+        
+         <attribute  name ="Class-Path"  value ="${libs.project}"   / --> 
+       </manifest>
+  </jar>
+ </target>
+ 
+<target name="clean">
+ <!-- Delete the ${build} and ${dist} directory trees -->
+ <delete dir="${build}"/>
+ <delete dir="${dist}"/>
+ </target>
+ 
+</project>
+ 
