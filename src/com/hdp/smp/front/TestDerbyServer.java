@@ -78,15 +78,58 @@ public class TestDerbyServer {
 		stmt.close();
 		conn.close();
 	}
+   
+   void insertRoles() throws ClassNotFoundException, SQLException{
+	    Connection conn = getConn();
+		
+		Statement stmt = conn.createStatement();
+		String str1="insert into roles ( name_CN, name_EN, description_CN, description_EN ) values "+ " ( '管理员' ,'Admin', '具有所有权限','have all privileges.')";
+		String str2="insert into roles ( name_CN, name_EN, description_CN, description_EN ) values "+ " ( '操作员' ,'Operators', '具有查看权限','have view privileges.')";
+		
+		  stmt.executeUpdate(str1);
+		  stmt.executeUpdate(str2);
+		stmt.close();
+		conn.close();
+   }
+   
+   void queryRoles() throws Exception {
+		Connection conn = getConn();
 
+		Statement stmt = conn.createStatement();
+
+		ResultSet rs = stmt.executeQuery("select * from roles ");
+
+		while (rs.next()) {
+			int id = rs.getInt(1);
+			String name1 = rs.getString(2);
+			String name2 = rs.getString(2);
+			// int age = rs.getInt(2);
+			// String desc = rs.getString(3);
+
+			// System.out.println("name="+name +"  age="+age +"  desc="+desc);
+			System.out.println("id=" + id + " name=" + name1 +"  name="+name2);
+
+		}
+
+		rs.close();
+		stmt.close();
+		conn.close();
+	   
+   }
+
+   
 	/**
 	 * @param args
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws Exception {
 		TestDerbyServer tds = new TestDerbyServer();
-		tds.testQueryData_spindle();
+		//tds.testQueryData_spindle();
+		
+		//tds.insertRoles();
+		
+		tds.queryRoles();
 
 	}
 
