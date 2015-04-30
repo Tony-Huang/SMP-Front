@@ -79,7 +79,7 @@ public class Station {
 		this.isActive = isActive;
 	}
 	
-	@Column
+	@Column 
 	public String getStatus() {
 		return status;
 	}
