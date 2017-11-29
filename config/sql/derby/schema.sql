@@ -72,8 +72,8 @@ CREATE TABLE VERSION
     (number VARCHAR(64), createdOn timestamp);
     
 INSERT into VERSION values('{current.version}', current_timestamp);
-insert into roles ( name_CN, name_EN, description_CN, description_EN ) values  ( '¹ÜÀíÔ±' ,'Admin', '¾ßÓĞËùÓĞÈ¨ÏŞ','have all privileges.')
-insert into roles ( name_CN, name_EN, description_CN, description_EN ) values  ( '²Ù×÷Ô±' ,'Operators', '¾ßÓĞ²é¿´È¨ÏŞ','have view privileges.')
+insert into roles ( name_CN, name_EN, description_CN, description_EN ) values  ( 'ç®¡ç†å‘˜' ,'Admin', 'å…·æœ‰æ‰€æœ‰æƒé™','have all privileges.') ;
+insert into roles ( name_CN, name_EN, description_CN, description_EN ) values  ( 'æ“ä½œå‘˜' ,'Operators', 'å…·æœ‰æŸ¥çœ‹æƒé™','have view privileges.') ;
 ---insert into users (name, passwd, roleId)  values ('admin','admin')
 
 --- index
